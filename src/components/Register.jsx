@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import { logo } from "../constants";
 import { Input } from "../ui";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  registerUserFailure,
+  registerUserStart,
+  registerUserSuccess,
+} from "../slice/auth";
+import AuthSerrvice from "../service/auth";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +15,29 @@ const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { isLoading } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const registerHandler = async (e) => {
+    e.preventDefault();
+    dispatch(registerUserStart());
+    const user = {
+      bio: { firstName, lastname },
+      username: userName,
+      email,
+      password,
+    };
+    try {
+      const response = await AuthSerrvice.userRegister(user);
+      console.log(response);
+      console.log(user);
+
+      dispatch(registerUserSuccess());
+    } catch (error) {
+      dispatch(registerUserFailure());
+    }
+  };
+
   return (
     <div className="container">
       <div className="py-3 text-center">
@@ -64,8 +94,13 @@ const Register = () => {
                 />
               </div>
             </div>
-            <button className="w-100 btn btn-primary btn-lg mt-3" type="submit">
-              Register
+            <button
+              className="w-100 btn btn-primary btn-lg mt-3"
+              type="submit"
+              onClick={registerHandler}
+              disabled={isLoading}
+            >
+              {isLoading ? "loading..." : "Register"}
             </button>
           </form>
         </div>
