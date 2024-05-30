@@ -2,18 +2,25 @@ import React, { useState } from "react";
 import { Input } from "../ui";
 import { logo } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUserStart } from "../slice/auth";
+import { signUserFailure, signUserStart, signUserSuccess } from "../slice/auth";
+import AuthSerrvice from "../service/auth";
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log(isLoading);
 
-  const loginHandler = (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
-    dispatch(loginUserStart());
+    dispatch(signUserStart());
+    const user = { email, password };
+    try {
+      const response = await AuthSerrvice.userLogin(user);
+      dispatch(signUserSuccess(response.user));
+    } catch (error) {
+      dispatch(signUserFailure(error.response.data.errors));
+    }
   };
   return (
     <div className="container my-5">
@@ -33,9 +40,11 @@ const Login = () => {
             <div className="row g-3">
               <div className="col-12">
                 <Input
-                  label={"Username"}
-                  state={userName}
-                  setState={setUserName}
+                  label={"Email"}
+                  state={email}
+                  setState={setEmail}
+                  type="email"
+                  placeholder="YourEmail@example.com"
                 />
               </div>
               <div className="col-12">
