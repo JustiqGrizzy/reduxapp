@@ -4,6 +4,7 @@ import { logo } from "../constants";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserFailure, signUserStart, signUserSuccess } from "../slice/auth";
 import AuthSerrvice from "../service/auth";
+import { ValidationError } from "./";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -33,6 +34,7 @@ const Login = () => {
           height="57"
         />
         <h1>Please Login</h1>
+        <ValidationError width={"300px"} />
       </div>
       <div className="d-flex justify-content-center mx-auto w-50">
         <div className="col-md-7 col-lg-8 ">

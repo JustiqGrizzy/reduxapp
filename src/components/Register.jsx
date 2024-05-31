@@ -4,6 +4,7 @@ import { Input } from "../ui";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserFailure, signUserStart, signUserSuccess } from "../slice/auth";
 import AuthSerrvice from "../service/auth";
+import { ValidationError } from "./";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -43,6 +44,7 @@ const Register = () => {
           height="57"
         />
         <h1>Registration form</h1>
+        <ValidationError width={"600px"} />
       </div>
       <div className="d-flex justify-content-center">
         <div className="col-md-7 col-lg-8">
