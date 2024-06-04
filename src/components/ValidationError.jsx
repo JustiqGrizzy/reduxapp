@@ -10,8 +10,6 @@ const ValidationError = ({ width }) => {
       return `${name} ${msg}`;
     });
   }, [error]);
-  console.log(error);
-  console.log(error !== null && errorMessage());
 
   return (
     error !== null &&

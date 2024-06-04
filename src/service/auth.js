@@ -1,6 +1,6 @@
 import axios from "./api";
 
-const AuthSerrvice = {
+const AuthService = {
   async userRegister(user) {
     const response = await axios.post("/users", { user });
     return response.data;
@@ -9,6 +9,9 @@ const AuthSerrvice = {
     const { data } = await axios.post("/users/login", { user });
     return data;
   },
-  async getUser() {},
+  async getUser() {
+    const { data } = await axios.get("/user");
+    return data;
+  },
 };
-export default AuthSerrvice;
+export default AuthService;

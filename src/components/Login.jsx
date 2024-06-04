@@ -21,7 +21,6 @@ const Login = () => {
     try {
       const response = await AuthSerrvice.userLogin(user);
       dispatch(signUserSuccess(response.user));
-      navigate("/");
     } catch (error) {
       dispatch(signUserFailure(error.response.data.errors));
     }
@@ -31,7 +30,7 @@ const Login = () => {
     if (loggedIn) {
       navigate("/");
     }
-  });
+  }, [loggedIn]);
   return (
     <div className="container my-5">
       <div className="py-3 text-center">
