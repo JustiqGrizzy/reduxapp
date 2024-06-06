@@ -39,7 +39,7 @@ const ArticleDetail = () => {
             <span className="fw-bold">Created at: </span>
             {moment(articleDetail?.createdAt).format("DD MMM, YYYY")}
           </p>
-          <div class="card my-3">
+          <div class="card my-3 w-50">
             <div class="card-body">
               <h5 class="card-title text-capitalize ">
                 {articleDetail?.author?.username}

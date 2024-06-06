@@ -26,6 +26,9 @@ const Navbar = () => {
         {loggedIn ? (
           <>
             <p className="py-2 ms-auto m-0 me-2">{user.username}</p>
+            <Link to={"/create-article"}>
+              <button className="btn btn-success">Create Article</button>
+            </Link>
             <button className="btn btn-outline-danger" onClick={logoutHandler}>
               {" "}
               Logout

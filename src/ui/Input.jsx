@@ -2,18 +2,16 @@ import React from "react";
 
 const Input = ({ label, type = "text", placeholder, state, setState }) => {
   return (
-    <div>
-      <label htmlFor="genInput" className="form-label">
-        {label}
-      </label>
+    <div className="form-floating mb-3">
       <input
         type={type}
         className="form-control"
-        id="genInput"
+        id="floatingInput"
         value={state}
         onChange={(e) => setState(e.target.value)}
         placeholder={placeholder}
       />
+      <label htmlFor="floatingInput">{label}</label>
     </div>
   );
 };
