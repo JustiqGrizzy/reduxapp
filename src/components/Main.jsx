@@ -1,13 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Loader } from "../ui";
 
 const Main = () => {
-  const data = useSelector((state) => state.article.articles);
+  const { articles, isLoading } = useSelector((state) => state.article);
 
   return (
     <div className="container">
+      {isLoading && <Loader />}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {data.map((item) => (
+        {articles.map((item) => (
           <div className="col " key={item.id}>
             <div className="card h-100 shadow-sm">
               <svg
@@ -24,32 +26,32 @@ const Main = () => {
               </svg>
               <div className="card-body d-block  ">
                 <div className="card-title fw-bold">{item.title}</div>
-                <p className="card-text">{item.description}</p>
-                <div className="card-footer d-flex justify-content-between align-items-center">
-                  <div className="btn-group">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-success"
-                    >
-                      View
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-secondary"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-danger"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                  <small className="text-body-secondary fw-bold text-capitalize">
-                    {item.author.username}
-                  </small>
+                <p className="card-text ">{item.description}</p>
+              </div>
+              <div className="card-footer d-flex justify-content-between align-items-center">
+                <div className="btn-group">
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-success"
+                  >
+                    View
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-secondary"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-danger"
+                  >
+                    Delete
+                  </button>
                 </div>
+                <small className="text-body-secondary fw-bold text-capitalize">
+                  {item.author.username}
+                </small>
               </div>
             </div>
           </div>
