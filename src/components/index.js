@@ -5,4 +5,5 @@ export { default as Navbar } from "./Navbar";
 export { default as ValidationError } from "./ValidationError";
 export { default as ArticleDetail } from "./ArticleDetail";
 export { default as CreateArticle } from "./CreateArticle";
+export { default as EditArticle } from "./EditArticle";
 export { default as ArticleForm } from "./ArticleForm";

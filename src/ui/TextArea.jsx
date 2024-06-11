@@ -18,7 +18,7 @@ const TextArea = ({
           onChange={(e) => setState(e.target.value)}
           placeholder={placeholder}
         ></textarea>
-        <label for="floatingTextarea2">{label}</label>
+        <label htmlFor="floatingTextarea2">{label}</label>
       </div>
     </div>
   );

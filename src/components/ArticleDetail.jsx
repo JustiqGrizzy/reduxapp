@@ -21,7 +21,7 @@ const ArticleDetail = () => {
     try {
       dispatch(getArticleDetailSucces(response.article));
     } catch (error) {
-      dispatch(getArticleDetailFailure());
+      // dispatch(getArticleDetailFailure());
     }
   };
 
